@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Dancer + KiokuDB = &lt;3</title>
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="header">
+                <p><a href="/">Home</a></p>
+            </div>
+            <div id="content">
+                <% content %>
+            </div>
+            <div id="footer"> </div>
+        </div>
+    </body>
+</html>

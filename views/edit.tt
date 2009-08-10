@@ -1,0 +1,9 @@
+<form action="/update" method="post">
+    <fieldset>
+        <legend>Editing <% params.name %></legend>
+        <label for="content">Page content</label>
+        <textarea name="content" cols="80" rows="20"><% document.content %></textarea>
+        <p><input type="submit" value="Save" /></p>
+        <input type="hidden" name="name" value="<% params.name %>" />
+    </fieldset>
+</form>

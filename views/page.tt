@@ -1,0 +1,5 @@
+<h1><% name %></h1>
+<% document.content %>
+<p>
+  <a href="/edit/<% name %>">Edit page</a>
+</p>
