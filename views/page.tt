@@ -1,5 +1,7 @@
 <h1><% name %></h1>
-<% document.content %>
-<p>
+<div class="content">
+  <% document %>
+</div>
+<p style="background: #eee">
   <a href="/edit/<% name %>">Edit page</a>
 </p>

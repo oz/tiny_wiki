@@ -3,6 +3,7 @@
 use KiokuDB;
 use Dancer;
 use Template;
+use Text::Markdown 'markdown';
 
 use strict;
 
@@ -20,18 +21,21 @@ before sub { var scope => $k->new_scope; };
 
 get '/' => sub {
     my $document = $k->lookup('home');
+
     $document ||= { content => 'This is the default homepage' };
-    template 'page' => { document => $document, name => 'home' };
+    template 'page' => { document => markdown($document->{content}), name => 'home' };
 };
 
 get '/:name' => sub {
     my $document = $k->lookup( params->{name} );
+
     $document ||= { content => 'Page does not exist yet... Create it?' };
-    template 'page' => { document => $document, name => params->{name} };
+    template 'page' => { document => markdown($document->{content}), name => params->{name} };
 };
 
 get '/edit/:name' => sub {
     my $document = $k->lookup( params->{name} );
+
     template 'edit' => { name => params->{name}, document => $document };
 };
 
@@ -39,12 +43,13 @@ post '/update' => sub {
     my $document = $k->lookup( params->{name} );
 
     if ( $document ) {
+        $document->{content} = params->{content};
         $k->update($document);
     } else {
         $document = { content => params->{content} };
         $k->store( params->{name} => $document );
     }
-    template 'page' => { document => $document, name => params->{name} };
+    template 'page' => { document => markdown($document->{content}), name => params->{name} };
 };
 
 Dancer->dance;
