@@ -8,6 +8,15 @@
                 <p>
                   <strong>Tiny Wiki</strong> : 
                   <a href="/">Home</a>
+
+				<span style="margin-left: 2em; ">
+				<% if (session.user) %> 
+					<% session.user %> [<a href="/logout">Sign out</a>]
+				<% else %>
+					[<a href="/login">Sign in</a>]
+				<% end %>
+				</span>
+
                 </p>
             </div>
             <div id="content">
